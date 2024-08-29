@@ -1,6 +1,9 @@
 #!groovy
 pipeline {
     agent any
+    tools {
+        nodejs 'nodejs-22.7.0'  // Use the name configured in Jenkins for NodeJS
+    }
     environment {
         // Define Docker Hub credentials ID
         DOCKER_CREDENTIALS_ID = 'dockerhub'
