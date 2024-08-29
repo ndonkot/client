@@ -12,16 +12,23 @@ pipeline {
         DOCKER_TAG = 'latest'
      }
     stages {
-        stage('Build Angular App') {
+           
+       stage('Install Angular CLI') {
             steps {
-                echo 'Building Angular application...'
-                script {
-                    sh 'npm install'
-                    sh 'ng build --prod'
-                }
+                sh 'npm install -g @angular/cli'
             }
         }
-    
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Build Angular App') {
+            steps {
+                sh 'ng build --prod'
+            }
+        }
+      
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
